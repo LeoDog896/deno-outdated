@@ -4,4 +4,5 @@ Scans your project at an entry point for outdated deno dependencies.
 
 Currently works with:
 
-- deno.land/x
+- https://deno.land/x
+- https://esm.sh/

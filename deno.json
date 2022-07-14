@@ -1,5 +1,6 @@
 {
   "tasks": {
-    "install": "deno install --allow-read=./ --allow-net --allow-write=./ -f -n=deno-outdated ./cli.ts"
+    "install": "deno install --allow-read=./ --allow-net --allow-write=./ -f -n=deno-outdated ./cli.ts",
+    "test": "deno test --allow-net"
   }
 }
