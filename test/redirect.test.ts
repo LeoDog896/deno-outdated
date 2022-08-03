@@ -12,7 +12,7 @@ Deno.test("Redirects redirect to another URL (against deno.land/x)", async () =>
 
 Deno.test("Redirects don't redirect to another URL (against deno.land/x)", async () => {
   const redirect = await checkRedirect(
-    "https://deno.land/x/cliffy@v0.24.2/mod.ts?code",
+    "https://deno.land/x/cliffy@v0.24.2/mod.ts?code", // i-deno-outdated
   );
 
   assertEquals(redirect, undefined);

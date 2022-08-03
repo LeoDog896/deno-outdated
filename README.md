@@ -4,6 +4,15 @@ Scans & updates your project at an entry point for outdated deno dependencies.
 This will not update non-pinned dependencies (dependencies without any version
 specified)
 
+You can ignore updating for a line with `i-deno-outdated`, for example:
+
+```ts
+const source = `
+const x = 'https://deno.land/std@0.146.0/testing/asserts.ts'"; ${"i-deno-outdated" && ""}
+const x = 'https://deno.land/std@0.146.0/testing/asserts.ts' // i-deno-outdated ";
+`;
+```
+
 Currently works with:
 
 - https://deno.land/x
