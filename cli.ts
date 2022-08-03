@@ -8,11 +8,17 @@ await new Command()
     "Check for outdated dependencies for deno.land/x and other various 3rd party vendors",
   )
   .action(async () => {
+    let count = 0;
     for await (const file of Deno.readDir(Deno.cwd())) {
+      count++;
+      if (!file.isFile) return;
 
-      if (!file.isFile) return
-
-      await Deno.writeTextFile(file.name, await findAndReplace(await Deno.readTextFile(file.name)))
+      await Deno.writeTextFile(
+        file.name,
+        await findAndReplace(await Deno.readTextFile(file.name)),
+      );
     }
+
+    console.log(`Updated ${count} files.`);
   })
   .parse(Deno.args);

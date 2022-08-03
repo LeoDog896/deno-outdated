@@ -8,7 +8,9 @@ You can ignore updating for a line with `i-deno-outdated`, for example:
 
 ```ts
 const source = `
-const x = 'https://deno.land/std@0.146.0/testing/asserts.ts'"; ${"i-deno-outdated" && ""}
+const x = 'https://deno.land/std@0.146.0/testing/asserts.ts'"; ${
+  "i-deno-outdated" && ""
+}
 const x = 'https://deno.land/std@0.146.0/testing/asserts.ts' // i-deno-outdated ";
 `;
 ```
