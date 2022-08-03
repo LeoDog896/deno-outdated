@@ -1,4 +1,4 @@
-import { Command } from "https://deno.land/x/cliffy@v0.24.2/command/mod.ts";
+import { Command } from "https://deno.land/x/cliffy@v0.24.3/command/mod.ts%22";
 import { findAndReplace } from "./change.ts";
 
 await new Command()
@@ -10,13 +10,21 @@ await new Command()
   .action(async () => {
     let count = 0;
     for await (const file of Deno.readDir(Deno.cwd())) {
-      count++;
-      if (!file.isFile) return;
+      if (!file.isFile) continue;
 
-      await Deno.writeTextFile(
-        file.name,
-        await findAndReplace(await Deno.readTextFile(file.name)),
-      );
+      const originalSource = await Deno.readTextFile(file.name);
+      const newSource = await findAndReplace(originalSource);
+
+      if (newSource !== originalSource) {
+        await Deno.writeTextFile(
+          file.name,
+          newSource,
+        );
+
+        count++;
+
+        console.log(file.name);
+      }
     }
 
     console.log(`Updated ${count} files.`);
