@@ -1,6 +1,6 @@
 # deno-outdated
 
-```bash
+````bash
 deno install --allow-read=./ --allow-net --allow-write=./ -f -n=deno-outdated https://deno.land/x/deno-outdated/cli.ts
 
 Scans & updates your project at an entry point for outdated deno dependencies.
@@ -15,7 +15,7 @@ const source = `
 const x = 'https://deno.land/std@0.146.0/testing/asserts.ts'; ${"i-deno-outdated" && ""} 
 const x = 'https://deno.land/std@0.146.0/testing/asserts.ts' // i-deno-outdated ";
 `;
-```
+````
 
 Currently works with:
 

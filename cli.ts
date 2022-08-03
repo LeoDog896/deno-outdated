@@ -8,7 +8,7 @@ await new Command()
     default: false,
   })
   .option("-i --ignore [ignore:string[]]", "list of files to ignore", {
-    separator: " "
+    separator: " ",
   })
   .description(
     "Check for outdated dependencies for deno.land/x and other various 3rd party vendors",
