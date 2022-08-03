@@ -13,9 +13,8 @@ Deno.test("Source code translation works", async () => {
 
 Deno.test("Comment ignore works", async () => {
   const source =
-    `const x = 'https://deno.land/std@0.146.0/testing/asserts.ts'; ${
-      "i-deno-outdated" && ""
-    }
+    // deno-fmt-ignore
+    `const x = 'https://deno.land/std@0.146.0/testing/asserts.ts'; ${"i-deno-outdated" && ""}
 const x = 'https://deno.land/std@0.146.0/testing/asserts.ts' // i-deno-outdated ";`;
   const redirect = await findAndReplace(source);
 
