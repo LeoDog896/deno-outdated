@@ -3,13 +3,13 @@
  * @param url the URL
  */
 export async function checkRedirect(url: string): Promise<string | undefined> {
-  const response = await fetch(url)
+  const response = await fetch(url);
 
-  await response.body?.cancel()
+  await response.body?.cancel();
 
   if (response.redirected) {
-    return response.url
+    return response.url;
   } else {
-    return undefined
+    return undefined;
   }
 }

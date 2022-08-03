@@ -6,5 +6,5 @@ export async function updateOrSelf(url: string): Promise<string> {
 }
 
 export async function update(url: string): Promise<string | undefined> {
-  return (await checkRedirect(apply(url) ?? url)) ?? undefined
+  return (await checkRedirect(apply(url) ?? url)) ?? undefined;
 }
