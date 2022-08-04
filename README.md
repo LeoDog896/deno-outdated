@@ -2,6 +2,7 @@
 
 ````bash
 deno install --allow-read=./ --allow-net --allow-write=./ -f -n=deno-outdated https://deno.land/x/deno-outdated/cli.ts
+```
 
 Scans & updates your project at an entry point for outdated deno dependencies.
 This will not update non-pinned dependencies (dependencies without any version
