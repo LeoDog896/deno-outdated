@@ -5,15 +5,15 @@ export interface Regex {
 
 export const regexes: Regex[] = [
   {
-    validate: /https?:\/\/deno.land\/[^ ]+/g,
+    validate: /https?:\/\/deno.land\/[^ "'`]+/g,
     removal: /@[\w\d+\.]+/g,
   },
   {
-    validate: /https?:\/\/esm.sh\/[^ ]+/g,
+    validate: /https?:\/\/esm.sh\/[^ "'`]+/g,
     removal: /@[\d\.]+/g,
   },
   {
-    validate: /https?:\/\/cdn.jsdelivr.net\/[^ ]+/g,
+    validate: /https?:\/\/cdn.jsdelivr.net\/[^ "'`]+/g,
     removal: /@[\d\.]+/g,
   },
 ];

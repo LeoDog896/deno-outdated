@@ -21,6 +21,5 @@ export async function findAndReplace(source: string): Promise<string> {
       )
     ),
   );
-
   return lines.join("\n");
 }
