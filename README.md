@@ -1,6 +1,6 @@
 # deno-outdated
 
-````bash
+```bash
 deno install --allow-read=./ --allow-net --allow-write=./ -f -n=deno-outdated https://deno.land/x/deno-outdated/cli.ts
 ```
 
