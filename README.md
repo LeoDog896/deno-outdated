@@ -1,4 +1,5 @@
 # deno-outdated
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/LeoDog896/deno-outdated)
 
 ```bash
 deno install --allow-read=./ --allow-net --allow-write=./ -f -n=deno-outdated https://deno.land/x/deno-outdated/cli.ts
@@ -10,14 +11,23 @@ Or, add it to your deno.json's tasks:
 "update": "deno run --allow-read=./ --allow-net --allow-write=./ https://deno.land/x/deno-outdated/cli.ts --ignore README.md",
 ```
 
-Scans & updates your project at an entry point for outdated deno dependencies.
+Scans & updates your project for outdated deno dependencies.
 This will not update non-pinned dependencies (dependencies without any version
 specified)
+
+## Flags
+
+- `-q, --quiet`: Ignore any output of the file
+- `-i, --ignore [files...]`: Ignore certain files for formatting
+
+## Ignore
 
 You can ignore updating for a line with `i-deno-outdated`, for example:
 
 <!-- deno-fmt-ignore -->
 ```ts
+import { assert } from "https://deno.land/std@0.146.0/testing/asserts.ts" // i-deno-outdated
+
 const source = `
 const x = 'https://deno.land/std@0.146.0/testing/asserts.ts'; ${"i-deno-outdated" && ""} 
 const x = 'https://deno.land/std@0.146.0/testing/asserts.ts' // i-deno-outdated ";
