@@ -1,26 +1,29 @@
 import { Command } from "https://deno.land/x/cliffy@v0.24.3/command/mod.ts";
+import { recursiveReaddir } from "https://deno.land/x/recursive_readdir@v2.0.0/mod.ts";
+import { basename } from "https://deno.land/std@0.151.0/path/mod.ts";
 import { findAndReplace } from "./change.ts";
 
-async function update(quiet: boolean, ignore: string[], dir = Deno.cwd()) {
+async function update(quiet: boolean, ignore: string[]) {
   let count = 0;
-  for await (const file of Deno.readDir(dir)) {
-    if (file.isDirectory) {
-      count += await update(quiet, ignore, file.name)
-    }
-    if (Array.isArray(ignore) && ignore.includes(file.name)) continue;
+  const files = await recursiveReaddir(Deno.cwd())
+  for (const file of files) {
+    // .gitignore and .git
+    if (basename(file) == ".git") continue
 
-    const originalSource = await Deno.readTextFile(file.name);
+    if (Array.isArray(ignore) && ignore.includes(basename(file))) continue;
+
+    const originalSource = await Deno.readTextFile(file);
     const newSource = await findAndReplace(originalSource);
 
     if (newSource !== originalSource) {
       await Deno.writeTextFile(
-        file.name,
+        file,
         newSource,
       );
 
       count++;
 
-      if (!quiet) console.log(file.name);
+      if (!quiet) console.log(file);
     }
   }
 
@@ -41,7 +44,7 @@ await new Command()
   )
   .action(async ({ quiet, ignore }) => {
     // cast ignore to string[]. Checks for boolean and null
-    const count = await update(quiet, ignore ? [] : ignore ?? [], Deno.cwd())
+    const count = await update(quiet, ignore ? [] : ignore ?? [])
     if (!quiet) console.log(`Updated ${count} files.`);
   })
   .parse(Deno.args);
