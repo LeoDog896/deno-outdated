@@ -1,14 +1,14 @@
 import { apply } from "../regex.ts";
-import { assertEquals } from "https://deno.land/std@0.148.0/testing/asserts.ts";
+import { assertEquals } from "https://deno.land/std@0.151.0/testing/asserts.ts";
 
 Deno.test("Removal works (deno.land/x)", () => {
-  const url = "https://deno.land/x/cliffy@v0.24.2/mod.ts";
+  const url = "https://deno.land/x/cliffy@v0.24.3/mod.ts";
 
   assertEquals(apply(url), "https://deno.land/x/cliffy/mod.ts"); // i-deno-outdated
 });
 
 Deno.test("Removal works (esm.sh)", () => {
-  const url = "https://esm.sh/react@17.0.2";
+  const url = "https://esm.sh/react@18.2.0";
 
   assertEquals(apply(url), "https://esm.sh/react"); // i-deno-outdated
 });
