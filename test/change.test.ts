@@ -9,6 +9,8 @@ Deno.test("Source code translation works", async () => {
   const source = "const x = 'https://deno.land/std@0.146.0/testing/asserts.ts'"; // i-deno-outdated
   const redirect = await findAndReplace(source);
 
+  console.log(redirect)
+
   assertNotEquals(redirect, source);
 });
 
