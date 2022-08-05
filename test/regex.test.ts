@@ -4,13 +4,13 @@ import { assertEquals } from "https://deno.land/std@0.148.0/testing/asserts.ts";
 Deno.test("Removal works (deno.land/x)", () => {
   const url = "https://deno.land/x/cliffy@v0.24.2/mod.ts";
 
-  assertEquals(apply(url), "https://deno.land/x/cliffy/mod.ts");
+  assertEquals(apply(url), "https://deno.land/x/cliffy/mod.ts"); // i-deno-outdated
 });
 
 Deno.test("Removal works (esm.sh)", () => {
   const url = "https://esm.sh/react@17.0.2";
 
-  assertEquals(apply(url), "https://esm.sh/react");
+  assertEquals(apply(url), "https://esm.sh/react"); // i-deno-outdated
 });
 
 Deno.test("Removal works (cdn.jsdelivr.net)", () => {
@@ -18,6 +18,6 @@ Deno.test("Removal works (cdn.jsdelivr.net)", () => {
 
   assertEquals(
     apply(url),
-    "https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js",
+    "https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js", // i-deno-outdated
   );
 });

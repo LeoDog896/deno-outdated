@@ -5,7 +5,7 @@ import {
 } from "https://deno.land/std@0.148.0/testing/asserts.ts";
 
 Deno.test("Redirects redirect to another URL (against deno.land/x)", async () => {
-  const redirect = await checkRedirect("https://deno.land/x/cliffy/mod.ts");
+  const redirect = await checkRedirect("https://deno.land/x/cliffy/mod.ts"); // i-deno-outdated
 
   assertNotEquals(redirect, undefined);
 });

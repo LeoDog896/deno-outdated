@@ -11,9 +11,7 @@ Or, add it to your deno.json's tasks:
 "update": "deno run --allow-read=./ --allow-net --allow-write=./ https://deno.land/x/deno_outdated/cli.ts --ignore README.md",
 ```
 
-Scans & updates your project for outdated deno dependencies.
-This will not update non-pinned dependencies (dependencies without any version
-specified)
+Pins your dependencies to the latest version & updates existing ones.
 
 ## Flags
 
