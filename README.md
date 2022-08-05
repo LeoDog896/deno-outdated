@@ -16,7 +16,8 @@ Pins your dependencies to the latest version & updates existing ones.
 
 ## Flags
 
-- `-q, --quiet`: Ignore any output of the file
+- `-q, --quiet`: Silence CLI output
+- `-d, --debug`: Add extra information to see scanning
 - `-i, --ignore [files...]`: Ignore certain files for formatting
 
 ## Ignore
