@@ -16,6 +16,10 @@ export const regexes: Regex[] = [
     validate: /https?:\/\/cdn.jsdelivr.net\/[^ "'`]+/g,
     removal: /@[\d\.]+/g,
   },
+  {
+    validate: /https?:\/\/unpkg.com\/[^ "'`]+/g,
+    removal: /@[\w\d+\.]+/g,
+  },
 ];
 
 /**

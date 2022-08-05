@@ -18,15 +18,19 @@ export async function recursiveReaddir(path: string, ignore: string[]) {
   return files;
 }
 
-async function update(quiet: boolean, ignore: string[] = []) {
+async function update(
+  quiet: boolean,
+  ignore: string[] = [],
+  lineIgnore: string,
+) {
   let count = 0;
   // TODO .gitignore
-  const files = await recursiveReaddir(Deno.cwd(), [...ignore, ".git"])
+  const files = await recursiveReaddir(Deno.cwd(), [...ignore, ".git"]);
   for (const file of files) {
     if (ignore.includes(basename(file))) continue;
-    
+
     const originalSource = await Deno.readTextFile(file);
-    const newSource = await findAndReplace(originalSource);
+    const newSource = await findAndReplace(originalSource, lineIgnore);
 
     if (newSource !== originalSource) {
       await Deno.writeTextFile(
@@ -40,7 +44,7 @@ async function update(quiet: boolean, ignore: string[] = []) {
     }
   }
 
-  return count
+  return count;
 }
 
 await new Command()
@@ -52,11 +56,22 @@ await new Command()
   .option("-i --ignore [ignore:string[]]", "list of files to ignore", {
     separator: " ",
   })
+  .option(
+    "-l --line-ignore [line-ignore:string]",
+    "The text of the comment to ignore",
+    {
+      default: "i-deno-outdated",
+    },
+  )
   .description(
     "Check for outdated dependencies for deno.land/x and other various 3rd party vendors",
   )
-  .action(async ({ quiet, ignore }) => {
-    const count = await update(quiet, Array.isArray(ignore) ? ignore : [])
-    if (!quiet) console.log(`Updated ${count} files.`);
+  .action(async ({ quiet, ignore, lineIgnore }) => {
+    const count = await update(
+      quiet,
+      Array.isArray(ignore) ? ignore : [],
+      typeof lineIgnore === "string" ? lineIgnore : "i-deno-outdated",
+    );
+    if (!quiet) console.log(`Updated ${count} file${count === 1 ? "" : "s"}`);
   })
   .parse(Deno.args);
