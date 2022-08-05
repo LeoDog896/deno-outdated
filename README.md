@@ -31,13 +31,16 @@ const source = `
 const x = 'https://deno.land/std@0.146.0/testing/asserts.ts'; ${"i-deno-outdated" && ""} 
 const x = 'https://deno.land/std@0.146.0/testing/asserts.ts' // i-deno-outdated ";
 `;
-````
+```
 
 Currently works with:
 
 - https://deno.land/x
 - https://esm.sh/
 - https://cdn.jsdelivr.net
+- https://unpkg.com
+
+(Want to add more? Contribute to `regex.ts`)
 
 ## Internal layout
 
