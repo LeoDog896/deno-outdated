@@ -66,7 +66,7 @@ await new Command()
   .option("-q --quiet", "Silence any output", {
     default: false,
   })
-  .option("-i --ignore [ignore:string[]]", "list of files to ignore", {
+  .option("-i --ignore [ignore...:string]]", "list of files to ignore", {
     separator: " ",
   })
   .option(
