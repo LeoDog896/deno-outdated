@@ -19,6 +19,7 @@ Or, add it to your deno.json's (or deno.jsonc) tasks:
 - `-q, --quiet`: Silence CLI output
 - `-d, --debug`: Add extra information to see scanning
 - `-i, --ignore [files...]`: Ignore certain files for formatting
+- `-c, --check`: Check files for outdated dependencies without updating them
 
 ## Ignore
 
