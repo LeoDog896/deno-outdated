@@ -1,5 +1,5 @@
 import { Command } from "https://deno.land/x/cliffy@v0.24.3/command/mod.ts";
-import { basename, join } from "https://deno.land/std@0.151.0/path/mod.ts";
+import { basename, join } from "https://deno.land/std@0.152.0/path/mod.ts";
 import { findAndReplace } from "./change.ts";
 
 export async function* recursiveReaddir(
@@ -19,6 +19,7 @@ export async function* recursiveReaddir(
 
 async function update(
   quiet: boolean,
+  check: boolean,
   ignore: string[] = [],
   lineIgnore: string,
   debug = false,
@@ -38,10 +39,14 @@ async function update(
     const newSource = await findAndReplace(originalSource, lineIgnore);
 
     if (newSource !== originalSource) {
-      await Deno.writeTextFile(
-        file,
-        newSource,
-      );
+      if (check) {
+        console.log(`${file} needs updating`);
+      } else {
+        await Deno.writeTextFile(
+          file,
+          newSource,
+        );
+      }
 
       count++;
 
@@ -71,12 +76,20 @@ await new Command()
       default: "i-deno-outdated",
     },
   )
+  .option(
+    "-c --check",
+    "True if the editor shouldn't change files and tell you about outdated dependencies.",
+    {
+      default: false,
+    },
+  )
   .description(
     "Check for outdated dependencies for deno.land/x and other various 3rd party vendors",
   )
-  .action(async ({ quiet, ignore, lineIgnore, debug }) => {
+  .action(async ({ quiet, ignore, lineIgnore, debug, check }) => {
     const count = await update(
       quiet,
+      check,
       Array.isArray(ignore) ? ignore : [],
       typeof lineIgnore === "string" ? lineIgnore : "i-deno-outdated",
       debug,

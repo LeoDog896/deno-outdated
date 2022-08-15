@@ -2,17 +2,17 @@
 
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/LeoDog896/deno-outdated)
 
+Pins your dependencies to the latest version & updates existing ones.
+
 ```bash
 deno install --allow-read=./ --allow-net --allow-write=./ -f -n=deno-outdated https://deno.land/x/deno_outdated/cli.ts
 ```
 
-Or, add it to your deno.json's tasks:
+Or, add it to your deno.json's (or deno.jsonc) tasks:
 
 ```json
-"update": "deno run --allow-read=./ --allow-net --allow-write=./ https://deno.land/x/deno_outdated/cli.ts --ignore README.md",
+"update": "deno run --allow-read=./ --allow-net --allow-write=./ https://deno.land/x/deno_outdated/cli.ts",
 ```
-
-Pins your dependencies to the latest version & updates existing ones.
 
 ## Flags
 
