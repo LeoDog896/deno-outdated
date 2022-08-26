@@ -1,10 +1,10 @@
 # deno-outdated
 
-# OUTDATED: Use [uud](https://github.com/hayd/deno-udd) instead
-
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/LeoDog896/deno-outdated)
 
 Pins your dependencies to the latest version & updates existing ones.
+
+Also check out: [uud](https://github.com/hayd/deno-udd)
 
 ```bash
 deno install --allow-read=./ --allow-net --allow-write=./ -f -n=deno-outdated https://deno.land/x/deno_outdated/cli.ts
