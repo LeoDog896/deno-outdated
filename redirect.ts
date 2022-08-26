@@ -8,7 +8,7 @@ export async function checkRedirect(url: string): Promise<string | undefined> {
   await response.body?.cancel();
 
   if (response.redirected) {
-    return response.url + url.endsWith("/") ? "/" : "";
+    return response.url + (url.endsWith("/") ? "/" : "");
   } else {
     return undefined;
   }
