@@ -4,8 +4,6 @@
 
 Pins your dependencies to the latest version & updates existing ones.
 
-Also check out: [uud](https://github.com/hayd/deno-udd)
-
 ```bash
 deno install --allow-read=./ --allow-net --allow-write=./ -f -n=deno-outdated https://deno.land/x/deno_outdated/cli.ts
 ```
@@ -39,12 +37,17 @@ const x = 'https://deno.land/std@0.146.0/testing/asserts.ts' // i-deno-outdated 
 
 Currently works with:
 
-- https://deno.land/x
+- https://deno.land/
 - https://esm.sh/
 - https://cdn.jsdelivr.net
 - https://unpkg.com
 
 (Want to add more? Contribute to `regex.ts`)
+
+## What's the difference between this and [UDD](https://github.com/hayd/deno-udd)?
+
+This tool aims to be similar to deno native tools such as `deno fmt` and
+`deno lint`, or aka shellable
 
 ## Internal layout
 

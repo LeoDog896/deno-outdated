@@ -1,9 +1,14 @@
 import { Command } from "https://deno.land/x/cliffy@v0.24.3/command/mod.ts";
-import { basename, join } from "https://deno.land/std@0.152.0/path/mod.ts";
+import { basename, join } from "https://deno.land/std@0.153.0/path/mod.ts";
 import { findAndReplace } from "./change.ts";
 
+/**
+ * Recursively find all files in a directory
+ * @param path The starting parent path
+ * @param ignore The files to ignore
+ */
 export async function* recursiveReaddir(
-  path: string,
+  path = Deno.cwd(),
   ignore: string[] = [],
 ): AsyncGenerator<string, void> {
   for await (const dirEntry of Deno.readDir(path)) {
@@ -18,17 +23,15 @@ export async function* recursiveReaddir(
 }
 
 async function update(
-  quiet: boolean,
-  check: boolean,
+  quiet = false,
+  check = false,
   ignore: string[] = [],
-  lineIgnore: string,
+  lineIgnore = "i-deno-outdated",
   debug = false,
 ) {
   let count = 0;
   // TODO .gitignore
   for await (const file of recursiveReaddir(Deno.cwd(), [...ignore, ".git"])) {
-    if (debug) console.log(`Scanning ${file}`);
-
     if (ignore.includes(basename(file))) {
       if (debug) console.log(`Ignoring ${file}`);
       continue;
@@ -59,16 +62,13 @@ async function update(
 
 await new Command()
   .name("deno-outdated")
-  .version("0.0.1")
-  .option("-d --debug", "Show all scanned files", {
-    default: false,
-  })
-  .option("-q --quiet", "Silence any output", {
-    default: false,
-  })
-  .option("-i --ignore [ignore...:string]]", "list of files to ignore", {
-    separator: " ",
-  })
+  .version("0.3.0")
+  .option("-d, --debug", "Show all scanned files")
+  .option("-q, --quiet", "Silence any output")
+  .option(
+    "-c, --check",
+    "Check files without updating them",
+  )
   .option(
     "-l --line-ignore [line-ignore:string]",
     "The text of the comment to ignore",
@@ -76,15 +76,11 @@ await new Command()
       default: "i-deno-outdated",
     },
   )
-  .option(
-    "-c --check",
-    "True if the editor shouldn't change files and tell you about outdated dependencies.",
-    {
-      default: false,
-    },
-  )
+  .option("-i --ignore [ignore...:string]]", "list of files to ignore", {
+    separator: " ",
+  })
   .description(
-    "Check for outdated dependencies for deno.land/x and other various 3rd party vendors",
+    "Check and update outdated dependencies for various 3rd party vendors",
   )
   .action(async ({ quiet, ignore, lineIgnore, debug, check }) => {
     const count = await update(
@@ -94,6 +90,6 @@ await new Command()
       typeof lineIgnore === "string" ? lineIgnore : "i-deno-outdated",
       debug,
     );
-    if (!quiet) console.log(`Updated ${count} file${count === 1 ? "" : "s"}`);
+    if (!quiet) console.log(`${check ? "Checked" : "Updated"} ${count} file${count === 1 ? "" : "s"}`);
   })
   .parse(Deno.args);

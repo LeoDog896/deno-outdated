@@ -3,6 +3,14 @@ export interface Regex {
   removal: RegExp;
 }
 
+/*
+ TODO all of the regexes currently follow:
+
+ Match: /https\?:\\\/\\\/([\w.]+)\\\/\[\^ "'`\]\+\/g
+ Replace: "$1"
+
+ All cases follow similar of not exactly the same removal case. When more regexes are added, if they all follow this pattern, it may be possible to easily update new registries that follow this.
+*/
 export const regexes: Regex[] = [
   {
     validate: /https?:\/\/deno.land\/[^ "'`]+/g,

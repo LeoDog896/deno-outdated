@@ -5,7 +5,7 @@ import {
   assert,
   assertEquals,
   assertNotEquals,
-} from "https://deno.land/std@0.152.0/testing/asserts.ts";
+} from "https://deno.land/std@0.153.0/testing/asserts.ts";
 
 Deno.test("Source code translation works", async () => {
   const source = "const x = 'https://deno.land/std@0.146.0/testing/asserts.ts'"; // i-deno-outdated
@@ -27,7 +27,10 @@ const x = 'https://deno.land/std@0.146.0/testing/asserts.ts' // i-deno-outdated 
   // ensure that the escape character bug does not exist
   assert(!lines[0].includes("%22"));
 
-  assert(!lines[0].includes("i-deno-outdated"), "i-deno-outdated exists in the first line of the source string")
+  assert(
+    !lines[0].includes("i-deno-outdated"),
+    "i-deno-outdated exists in the first line of the source string",
+  );
   assertNotEquals(lines[0], sourceLines[0]); // the deno-outdated line exists only exists in the code and not the string (as proven above)
   assertEquals(lines[1], sourceLines[1]);
 
