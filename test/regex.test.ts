@@ -1,8 +1,8 @@
 import { apply } from "../regex.ts";
-import { assertEquals } from "https://deno.land/std@0.152.0/testing/asserts.ts";
+import { assertEquals } from "https://deno.land/std@0.157.0/testing/asserts.ts";
 
 Deno.test("Removal works (deno.land/x)", () => {
-  const url = "https://deno.land/x/cliffy@v0.24.3/mod.ts";
+  const url = "https://deno.land/x/cliffy@v0.25.1/mod.ts";
 
   assertEquals(apply(url), "https://deno.land/x/cliffy/mod.ts"); // i-deno-outdated
 });

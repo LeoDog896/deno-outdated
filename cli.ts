@@ -1,5 +1,5 @@
-import { Command } from "https://deno.land/x/cliffy@v0.24.3/command/mod.ts";
-import { basename, join } from "https://deno.land/std@0.153.0/path/mod.ts";
+import { Command } from "https://deno.land/x/cliffy@v0.25.1/command/mod.ts";
+import { basename, join } from "https://deno.land/std@0.157.0/path/mod.ts";
 import { findAndReplace } from "./change.ts";
 
 /**
@@ -90,6 +90,12 @@ await new Command()
       typeof lineIgnore === "string" ? lineIgnore : "i-deno-outdated",
       debug,
     );
-    if (!quiet) console.log(`${check ? "Checked" : "Updated"} ${count} file${count === 1 ? "" : "s"}`);
+    if (!quiet) {
+      console.log(
+        `${check ? "Checked" : "Updated"} ${count} file${
+          count === 1 ? "" : "s"
+        }`,
+      );
+    }
   })
   .parse(Deno.args);
