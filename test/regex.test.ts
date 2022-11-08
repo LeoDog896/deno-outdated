@@ -1,5 +1,5 @@
 import { apply } from "../regex.ts";
-import { assertEquals } from "https://deno.land/std@0.161.0/testing/asserts.ts";
+import { assertEquals } from "https://deno.land/std@0.162.0/testing/asserts.ts";
 
 Deno.test("Removal works (deno.land/x)", () => {
   const url = "https://deno.land/x/cliffy@v0.25.4/mod.ts";
