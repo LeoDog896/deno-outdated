@@ -31,7 +31,7 @@ async function update(
 ) {
   let count = 0;
   // TODO .gitignore
-  for await (const file of recursiveReaddir(Deno.cwd(), [...ignore, ".git"])) {
+  for await (const file of recursiveReaddir(Deno.cwd(), [...ignore, ".git", "deno.lock"])) {
     if (ignore.includes(basename(file))) {
       if (debug) console.log(`Ignoring ${file}`);
       continue;
