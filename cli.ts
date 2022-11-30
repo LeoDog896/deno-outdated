@@ -1,5 +1,5 @@
 import { Command } from "https://deno.land/x/cliffy@v0.25.4/command/mod.ts";
-import { basename, join } from "https://deno.land/std@0.162.0/path/mod.ts";
+import { basename, join } from "https://deno.land/std@0.166.0/path/mod.ts";
 import { findAndReplace } from "./change.ts";
 
 /**
