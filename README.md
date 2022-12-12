@@ -17,6 +17,8 @@ Or, add it to your deno.json's (or deno.jsonc) tasks:
 You can even add a github action:
 https://github.com/LeoDog896/deno-outdated/blob/main/.github/workflows/update.yml
 
+Do note that if you're running an application, remove the run action that removes deno.lock `rm deno.lock`, as that is only for libraries
+
 ## Flags
 
 - `-q, --quiet`: Silence CLI output
