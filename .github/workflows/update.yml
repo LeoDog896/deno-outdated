@@ -15,6 +15,8 @@ jobs:
           deno-version: vx.x.x
       - name: Update dependencies
         run: deno task update
+      - name: Remove deno.lock # Remove this if you're using deno for an application
+        run: rm deno.lock
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
         id: pr
