@@ -1,0 +1,22 @@
+name: test
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: denoland/setup-deno@v1
+        with:
+          deno-version: vx.x.x
+      - name: Update dependencies
+        run: deno task update
+      - name: Basic tests
+        id: test
+        run: |
+          deno task test
