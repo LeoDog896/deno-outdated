@@ -1,10 +1,6 @@
 name: test
 
-on:
-  pull_request:
-    branches: [main]
-  push:
-    branches: [main]
+on: [pull_request, push]
 
 jobs:
   test:
@@ -17,6 +13,5 @@ jobs:
       - name: Update dependencies
         run: deno task update
       - name: Basic tests
-        id: test
-        run: |
-          deno task test
+        id: Run tests
+        run: deno task test
