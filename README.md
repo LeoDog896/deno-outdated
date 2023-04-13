@@ -1,7 +1,5 @@
 # deno-outdated
 
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/LeoDog896/deno-outdated)
-
 Pins your dependencies to the latest version & updates existing ones.
 
 ```bash
