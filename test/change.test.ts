@@ -41,6 +41,12 @@ Deno.test("Slash at the end of a URL isn't removed", async () => {
   const source = `https://esm.sh/preact@10.10.6/`; // i-deno-outdated
   const result = await findAndReplace(source);
 
+  // https://github.com/LeoDog896/deno-outdated/issues/18
+  assert(
+    !result.endsWith("//"),
+    "Result ends with two slashes '//': " + result,
+  );
+
   assert(
     result.endsWith("/"),
     "Result doesn't end with '/': " + result,
